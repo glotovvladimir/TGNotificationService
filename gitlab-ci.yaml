@@ -1,9 +1,7 @@
 variables:
-  BOT_TOKEN: "657650714:nxUn0ZNNzKPd3d6S6DRb8ae0njY"
-  CHAT_ID: "-1020671658"
   REDMINE: true
-#  BOT_TOKEN: "$botToken"
-#  CHAT_ID: "$chatId"
+  BOT_TOKEN: "$botToken"
+  CHAT_ID: "$chatId"
 
 init:
   tags: [ java-$javaVersion, shell ]
