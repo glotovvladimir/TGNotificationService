@@ -1,0 +1,26 @@
+variables:
+  BOT_TOKEN: "657650714:nxUn0ZNNzKPd3d6S6DRb8ae0njY"
+  CHAT_ID: "-1020671658"
+  REDMINE: true
+#  BOT_TOKEN: "$botToken"
+#  CHAT_ID: "$chatId"
+
+init:
+  tags: [ java-$javaVersion, shell ]
+  stage: redmine
+  rules:
+    - if: '$REDMINE == "true"'
+      when: always
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+      when: always
+  script:
+    - which java
+    - |
+      if [[ ! -f "./gradlew" ]]; then
+          echo "Не найден Gradle Wrapper" >&2
+          exit 1
+      fi
+  artifacts:
+    reports:
+      dotenv: $BUILD_DIR/build.env
+    expire_in: 1 day
